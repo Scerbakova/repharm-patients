@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Patient } from 'src/app/models/patient.model';
 import { PatientsService } from 'src/app/services/patients.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-my-patients',
@@ -36,11 +37,11 @@ export class MyPatientsComponent implements OnInit {
     'immunizations',
   ];
 
-  constructor(private patientsService: PatientsService) {}
+  constructor(private patientsService: PatientsService, private userService: UserService) {}
 
   ngOnInit(): void {
-    this.doctor = 'Jane Brown';
-    this.patientsService.getDoctorsPatients('Jane/Brown').subscribe({
+    this.doctor = this.userService.user?.doctorsName + ' ' + this.userService.user?.doctorsSurname;
+    this.patientsService.getDoctorsPatients(this.doctor).subscribe({
       next: (patients) => {
         this.patients = patients;
       },

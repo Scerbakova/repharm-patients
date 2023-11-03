@@ -1,1 +1,13 @@
-<p>login works!</p>
+<div class="container">
+  <form (submit)="login()">
+    <div class="form-group mb-3">
+      <label for="nameInput">Name</label>
+      <input type="text" class="form-control" id="nameInput" name="name" [(ngModel)]="name" placeholder="Enter your name" required>
+    </div>
+    <div class="form-group mb-3">
+      <label for="surnameInput">Surname</label>
+      <input type="text" class="form-control" id="surnameInput" name="surname" [(ngModel)]="surname" placeholder="Enter your surname" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+</div>

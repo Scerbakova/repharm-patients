@@ -29,6 +29,7 @@ import { LoginComponent } from './pages/login/login.component';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
+      { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'all-patients-list', component: AllPatientsComponent, pathMatch: 'full' },
       { path: 'my-patients-list', component: MyPatientsComponent, pathMatch: 'full' },
       { path: 'register-new-patient', component: RegistrationFormComponent, pathMatch: 'full' }
