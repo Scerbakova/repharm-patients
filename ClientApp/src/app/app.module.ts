@@ -9,6 +9,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { AllPatientsComponent } from './components/patients/all-patients/all-patients.component';
 import { MyPatientsComponent } from './components/patients/my-patients/my-patients.component';
 import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
+import { BoolRepresentationPipe } from './pipes/bool-representation.pipe';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { RegistrationFormComponent } from './components/registration-form/regist
     NavMenuComponent,
     AllPatientsComponent,
     MyPatientsComponent,
-    RegistrationFormComponent
+    RegistrationFormComponent,
+    BoolRepresentationPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

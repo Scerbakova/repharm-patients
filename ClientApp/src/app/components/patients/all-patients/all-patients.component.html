@@ -8,8 +8,7 @@
   >
     <thead>
       <tr>
-        <th>first name</th>
-        <th>last name</th>
+        <th>patient</th>
         <th>personal id</th>
         <th>date of birth</th>
         <th>phone number</th>
@@ -25,8 +24,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let patient of patients">
-        <td>{{ patient.firstName }}</td>
-        <td>{{ patient.lastName }}</td>
+        <td>{{ patient.firstName + " " + patient.lastName}}</td>
         <td>{{ patient.personalId }}</td>
         <td>{{ patient.dateOfBirth }}</td>
         <td>{{ patient.phoneNumber }}</td>
@@ -36,7 +34,7 @@
         <td>{{ patient.medications }}</td>
         <td>{{ patient.allergies }}</td>
         <td>{{ patient.immunizations }}</td>
-        <td>{{ patient.insurance }}</td>
+        <td [innerHTML]="patient.insurance | boolRepresentation"></td>
         <td>{{ patient.doctorsName + " " + patient.doctorsSurname }}</td>
       </tr>
     </tbody>

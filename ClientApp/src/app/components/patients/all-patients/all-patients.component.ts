@@ -13,30 +13,13 @@ export class AllPatientsComponent implements OnInit {
   constructor(private patientsService: PatientsService) {}
 
   ngOnInit(): void {
-    this.patientsService.getAllPatients().subscribe(
-      (patients: Patient[]) => {
+    this.patientsService.getAllPatients().subscribe({
+      next: (patients) => {
         this.patients = patients;
       },
-      (error: any) => {
-        console.log(error);
-      }
-    );
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }
-
-// {
-//   "firstName": "John",
-//   "lastName": "Doe",
-//   "personalId": "120577-45544",
-//   "dateOfBirth": "12.05.1977",
-//   "phoneNumber": "21234567",
-//   "email": "johnDoe@gmail.com",
-//   "allergies": "Peanuts",
-//   "immunizations": "Flu",
-//   "medicalConditions": "Diabetes",
-//   "medications": "string",
-//   "surgergicalHistory": "Appendectomy",
-//   "doctorsName": "Jane",
-//   "doctorsSurname": "Brown",
-//   "insurance": true
-// }
