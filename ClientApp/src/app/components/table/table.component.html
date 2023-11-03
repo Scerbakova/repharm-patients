@@ -1,0 +1,24 @@
+<div class="m-3">
+  <h1 class="mb-3">{{ title }}</h1>
+  <small id="tableDescription">{{ tableDescription }}</small>
+  <table aria-describedby="tableDescription" class="table" *ngIf="data?.length; else noData">
+    <thead class="patients__table">
+      <tr>
+        <th *ngFor="let headName of head">{{ headName }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table__row" *ngFor="let item of data">
+        <td>{{ item.firstName + " " + item.lastName }}</td>
+        <td *ngFor="let prop of properties">{{ getProperty(item, prop)}}</td>
+        <td [innerHTML]="item.insurance | boolRepresentation"></td>
+        <ng-container *ngIf="doctorName">
+          <td>{{ item.doctorsName + " " + item.doctorsSurname }}</td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #noData>
+    <p>No data found</p>
+  </ng-template>
+</div>
