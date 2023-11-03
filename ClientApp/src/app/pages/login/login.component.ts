@@ -14,7 +14,7 @@ export class LoginComponent {
   constructor(private userService: UserService, private router: Router) {}
 
   login() {
-    if (this.name === 'Jane' && this.surname === 'Brown') {
+    if (this.name !== 'Jane' && this.surname === 'Brown') {
       this.userService.setUser(this.name, this.surname);
       this.router.navigate(['/all-patients-list']);
     }

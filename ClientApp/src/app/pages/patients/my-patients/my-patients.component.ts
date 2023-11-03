@@ -40,8 +40,10 @@ export class MyPatientsComponent implements OnInit {
   constructor(private patientsService: PatientsService, private userService: UserService) {}
 
   ngOnInit(): void {
-    this.doctor = this.userService.user?.doctorsName + ' ' + this.userService.user?.doctorsSurname;
-    this.patientsService.getDoctorsPatients(this.doctor).subscribe({
+    const name = this.userService.user?.doctorsName;
+    const surname = this.userService.user?.doctorsSurname;
+    this.doctor = name + ' ' + surname;
+    this.patientsService.getDoctorsPatients(`${name}/${surname}`).subscribe({
       next: (patients) => {
         this.patients = patients;
       },

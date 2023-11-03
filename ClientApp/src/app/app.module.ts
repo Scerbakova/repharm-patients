@@ -12,6 +12,7 @@ import { RegistrationFormComponent } from './pages/registration-form/registratio
 import { BoolRepresentationPipe } from './pipes/bool-representation.pipe';
 import { TableComponent } from './components/table/table.component';
 import { LoginComponent } from './pages/login/login.component';
+import { AuthGuard } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { LoginComponent } from './pages/login/login.component';
     RegistrationFormComponent,
     BoolRepresentationPipe,
     TableComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -30,12 +31,28 @@ import { LoginComponent } from './pages/login/login.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
-      { path: 'all-patients-list', component: AllPatientsComponent, pathMatch: 'full' },
-      { path: 'my-patients-list', component: MyPatientsComponent, pathMatch: 'full' },
-      { path: 'register-new-patient', component: RegistrationFormComponent, pathMatch: 'full' }
-    ])
+      {
+        path: 'all-patients-list',
+        component: AllPatientsComponent,
+        pathMatch: 'full',
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'my-patients-list',
+        component: MyPatientsComponent,
+        pathMatch: 'full',
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'register-new-patient',
+        component: RegistrationFormComponent,
+        pathMatch: 'full',
+        canActivate: [AuthGuard],
+      },
+    ]),
   ],
+  exports: [RouterModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
