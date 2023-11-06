@@ -19,4 +19,12 @@ export class PatientsService {
   getDoctorsPatients(doctor: string): Observable<Patient[]> {
     return this.http.get<Patient[]>(this.baseApiUrl + '/api/Patients/' + doctor);
   }
+
+  addNewPatient(patient: Partial<Patient>): Observable<Patient> {
+    return this.http.post<Patient>(this.baseApiUrl + '/api/Patients', patient);
+  }
+
+  editPatient(id: string | null | undefined, patient: Partial<Patient>): Observable<Patient> {
+    return this.http.put<Patient>(this.baseApiUrl + '/api/Patients/' + id, patient);
+  }
 }

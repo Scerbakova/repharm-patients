@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Patient } from 'src/app/models/patient.model';
 import { PatientsService } from 'src/app/services/patients.service';
 
@@ -9,6 +9,7 @@ import { PatientsService } from 'src/app/services/patients.service';
 })
 export class AllPatientsComponent implements OnInit {
   patients: Patient[] = [];
+  patient?: Patient
   head: string[] = [
     'patient',
     'personal id',
@@ -36,9 +37,11 @@ export class AllPatientsComponent implements OnInit {
     'immunizations',
   ];
 
-  constructor(private patientsService: PatientsService) { }
+  isModalOpen: boolean = false;
 
-  ngOnInit(): void {
+  constructor(private patientsService: PatientsService) {}
+
+  fetchPatients(): void {
     this.patientsService.getAllPatients().subscribe({
       next: (patients) => {
         this.patients = patients;
@@ -47,5 +50,20 @@ export class AllPatientsComponent implements OnInit {
         console.log(err);
       },
     });
+  }
+
+  ngOnInit(): void {
+    this.fetchPatients();
+  }
+
+  onEditComplete(edited: boolean) {
+    if (edited) {
+      this.fetchPatients();
+    }
+  }
+
+  openModal(item?: Patient) {
+    this.patient = item ?? undefined;
+    this.isModalOpen = true;
   }
 }

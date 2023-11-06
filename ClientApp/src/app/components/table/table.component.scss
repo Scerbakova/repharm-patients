@@ -1,0 +1,9 @@
+.patients__table {
+  font-weight: bold;
+  text-align: start;
+}
+
+.table__row td, .patients__table th {
+  border: 1px solid #dee2e6;
+	cursor: pointer;
+}

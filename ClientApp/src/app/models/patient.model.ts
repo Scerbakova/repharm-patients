@@ -1,6 +1,6 @@
 export type PatientFieldWithNoneOrMultipleValues = string[] | string | null;
 export interface Patient {
-  id: string;
+  id: string | null;
   firstName: string;
   lastName: string;
   personalId: string;

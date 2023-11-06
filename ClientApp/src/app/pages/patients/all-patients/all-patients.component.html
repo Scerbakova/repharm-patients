@@ -1,7 +1,19 @@
-<app-table
-[title]="'Patients'"
-[tableDescription]="'All patients'"
-[data]="patients"
-[head]="head"
-[properties]="patientProperties"
-[doctorName]="true"/>
+<div class="all-patients__container">
+  <app-table
+    [title]="'Patients'"
+    [tableDescription]="'All patients'"
+    [data]="patients"
+    [head]="head"
+    [properties]="patientProperties"
+    [isDoctorName]="true"
+    (passPatient)="openModal($event)"
+  />
+  <button
+    (click)="openModal()"
+    type="button"
+    class="btn btn-primary m-3 align-self-end"
+  >
+    Add new Patient
+  </button>
+  <app-registration-form [(isModalOpen)]="isModalOpen" [patient]="patient" (patientEdited)="onEditComplete($event)"/>
+</div>

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,12 +10,16 @@ export class LoginComponent {
   name: string = '';
   surname: string = '';
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private router: Router) {}
 
   login() {
-    if (this.name !== 'Jane' && this.surname === 'Brown') {
-      this.userService.setUser(this.name, this.surname);
+    if (this.name === 'Jane' && this.surname === 'Brown') {
+      localStorage.setItem('name', this.name);
+      localStorage.setItem('surname', this.surname);
       this.router.navigate(['/all-patients-list']);
+    }
+    else {
+      alert('Invalid Name or Surname');
     }
   }
 }
