@@ -6,7 +6,13 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { Patient } from 'src/app/models/patient.model';
 import { PatientsService } from 'src/app/services/patients.service';
 
@@ -29,16 +35,15 @@ export class RegistrationFormComponent implements OnInit {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const personalId = control.value;
       if (!personalId) {
-        return null; // Value is empty; let other validators handle this
+        return null;
       }
-  
-      // Your custom validation logic for personalId using a regular expression
+
       const regex = /^\d{6}-\d{5}$/;
       if (!regex.test(personalId)) {
-        return { 'invalidPersonalId': true };
+        return { invalidPersonalId: true };
       }
-  
-      return null; // Personal ID is valid
+
+      return null;
     };
   }
 
@@ -47,7 +52,10 @@ export class RegistrationFormComponent implements OnInit {
       'first name': ['', Validators.required],
       'last name': ['', Validators.required],
       'personal id': ['', [Validators.required, this.personalIdValidator()]],
-      'date of birth': ['', [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)]],
+      'date of birth': [
+        '',
+        [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)],
+      ],
       'phone number': ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       'medical conditions': [''],
@@ -62,13 +70,7 @@ export class RegistrationFormComponent implements OnInit {
   }
   populateForm(): void {
     if (this.patient) {
-      this.registerOrEdit = 'Edit';
-      this.formTitle =
-        this.registerOrEdit === 'Edit'
-          ? "Change Patient's data"
-          : 'Register New Patient';
       this.registerPatientForm.patchValue({
-        // Populate form fields with patient data
         'first name': this.patient.firstName,
         'last name': this.patient.lastName,
         'personal id': this.patient.personalId,
@@ -89,8 +91,15 @@ export class RegistrationFormComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.isModalOpen && this.isModalOpen) {
-      this.buidForm();
-      this.populateForm();
+      if (this.patient) {
+        this.populateForm();
+        this.registerOrEdit = 'Edit';
+        this.formTitle = "Change Patient's data";
+      } else {
+        this.registerOrEdit = 'Register';
+        this.formTitle = 'Register New Patient';
+        this.buidForm();
+      }
     }
   }
 
@@ -153,6 +162,7 @@ export class RegistrationFormComponent implements OnInit {
       if (this.registerOrEdit === 'Register') {
         this.patientsService.addNewPatient(patient).subscribe({
           next: () => {
+            this.patientEdited.emit(true);
             this.resetForm();
             this.close();
           },
@@ -166,6 +176,7 @@ export class RegistrationFormComponent implements OnInit {
           next: () => {
             this.patientEdited.emit(true);
             this.resetForm();
+            this.patient = undefined;
             this.close();
           },
           error: (error) => {

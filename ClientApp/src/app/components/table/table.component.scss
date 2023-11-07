@@ -10,4 +10,17 @@
 .table__row td, .patients__table th {
   border: 1px solid #dee2e6;
 	cursor: pointer;
+  text-align: center;
+}
+
+.table__row {
+  &:hover {
+    background-color: rgb(204, 191, 245);
+  }
+}
+
+.delete__button {
+  &:hover {
+    background-color: rgb(172, 154, 233);
+  }
 }

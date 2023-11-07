@@ -24,7 +24,7 @@
           <td>{{ item.doctorsName + " " + item.doctorsSurname }}</td>
         </ng-container>
         <ng-container *ngIf="isDoctorName">
-          <td (click)="onDeleteClick($event, item)">delete</td>
+          <td class="delete__button" (click)="onDeleteClick($event, item)">delete</td>
         </ng-container>
       </tr>
     </tbody>
@@ -37,5 +37,6 @@
     *ngIf="confirmDeletePatient"
     (cancel)="cancelDelete()"
     (confirm)="confirmDelete()"
+    [patient]="confirmDeletePatient.firstName + ' ' + confirmDeletePatient.lastName"
   ></app-confirmation-modal>
 </div>
