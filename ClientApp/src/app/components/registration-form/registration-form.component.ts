@@ -185,7 +185,7 @@ export class RegistrationFormComponent implements OnInit {
         });
       }
     } else {
-      alert('Please fill in all the required fields.');
+      alert('Please fill in all the required fields or correct invalid data');
     }
   }
 }
