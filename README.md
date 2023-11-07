@@ -5,10 +5,30 @@ The Doctor can login and see all patients in the table, register patient, edit p
 There is some validation included for registering and editing patients in form in modal.
 There is confirmation modal when trying to delete patient.
 The app is responsive and there is a little bit of Bootstrap used for styling and scss
-![1](https://github.com/Scerbakova/repharm-patients/assets/97510856/d0f9c7a8-3292-48fa-9783-c127fb02b3a7)
-![2](https://github.com/Scerbakova/repharm-patients/assets/97510856/6bde4cc6-09a6-4480-89ff-0df92f125299)
-![3](https://github.com/Scerbakova/repharm-patients/assets/97510856/16870f63-38ad-4727-914b-4419f14240f1)
-![4](https://github.com/Scerbakova/repharm-patients/assets/97510856/e9b70214-686e-4d94-be05-b6111f642dfa)
-![5](https://github.com/Scerbakova/repharm-patients/assets/97510856/9526d9f7-21c3-4ff2-8365-83c1c104d9fb)
-![6](https://github.com/Scerbakova/repharm-patients/assets/97510856/c71633d6-49ec-4b6a-9db9-4f7779db541c)
-![7](https://github.com/Scerbakova/repharm-patients/assets/97510856/a4e754c3-4ccf-4c48-a858-f4e2bb5b81fc)
+<div align="center">
+<img src="https://github.com/Scerbakova/Scerbakova/assets/97510856/bfaa40da-e7fe-41e0-8c3a-556e3107b9a2" width="720">
+</div>
+
+<div align="center">
+<img src="https://github.com/Scerbakova/Scerbakova/assets/97510856/9d87a628-06a2-4f91-8c17-047965c420de" width="720">
+</div>
+
+<div align="center">
+<img src="https://github.com/Scerbakova/Scerbakova/assets/97510856/fd966987-8cb8-4939-b296-fe313e025345" width="720">
+</div>
+
+<div align="center">
+<img src="https://github.com/Scerbakova/Scerbakova/assets/97510856/348f022c-3a02-4175-b8c0-17fc27a028e2" width="720">
+</div>
+
+<div align="center">
+<img src="https://github.com/Scerbakova/Scerbakova/assets/97510856/16ab4616-32b1-4c85-ba15-2319a8f4a510" width="720">
+</div>
+
+<div align="center">
+<img src="https://github.com/Scerbakova/Scerbakova/assets/97510856/8f11e4cb-7b2e-4410-aa99-9a25eabb4c92" width="720">
+</div>
+
+<div align="center">
+<img src="https://github.com/Scerbakova/Scerbakova/assets/97510856/aeb52943-97db-4039-8d72-b36ca1f47c9d" width="720">
+</div>
