@@ -27,4 +27,8 @@ export class PatientsService {
   editPatient(id: string | null | undefined, patient: Partial<Patient>): Observable<Patient> {
     return this.http.put<Patient>(this.baseApiUrl + '/api/Patients/' + id, patient);
   }
+
+  deletePatient(id: string | null | undefined): Observable<Patient> {
+    return this.http.delete<Patient>(this.baseApiUrl + '/api/Patients/' + id);
+  }
 }

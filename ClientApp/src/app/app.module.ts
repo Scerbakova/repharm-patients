@@ -13,6 +13,7 @@ import { BoolRepresentationPipe } from './pipes/bool-representation.pipe';
 import { TableComponent } from './components/table/table.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthGuard } from './services/auth-guard.service';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AuthGuard } from './services/auth-guard.service';
     BoolRepresentationPipe,
     TableComponent,
     LoginComponent,
+    ConfirmationModalComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

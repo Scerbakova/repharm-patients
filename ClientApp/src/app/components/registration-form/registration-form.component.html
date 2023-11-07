@@ -1,5 +1,5 @@
-<div (click)="close()" class="form__modal-overlay" *ngIf="isModalOpen">
-  <div class="form__modal" (click)="preventClose($event)">
+<div (click)="close()" class="overlay" *ngIf="isModalOpen">
+  <div class="app__modal" (click)="preventClose($event)">
     <h2 class="mb-3">{{ formTitle }}</h2>
     <form [formGroup]="registerPatientForm" (ngSubmit)="registerPatient()">
       <div class="fields">

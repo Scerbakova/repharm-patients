@@ -1,19 +1,30 @@
-<div class="m-3">
+<div class="m-3 table__container">
   <h1 class="mb-3">{{ title }}</h1>
   <small id="tableDescription">{{ tableDescription }}</small>
-  <table aria-describedby="tableDescription" class="table" *ngIf="data?.length; else noData">
+  <table
+    aria-describedby="tableDescription"
+    class="table"
+    *ngIf="data?.length; else noData"
+  >
     <thead class="patients__table">
       <tr>
         <th *ngFor="let headName of head">{{ headName }}</th>
       </tr>
     </thead>
     <tbody>
-      <tr (click)="openModal(item)" class="table__row" *ngFor="let item of data">
+      <tr
+        (click)="openModal(item)"
+        class="table__row"
+        *ngFor="let item of data"
+      >
         <td>{{ item.firstName + " " + item.lastName }}</td>
-        <td *ngFor="let prop of properties">{{ getProperty(item, prop)}}</td>
+        <td *ngFor="let prop of properties">{{ getProperty(item, prop) }}</td>
         <td [innerHTML]="item.insurance | boolRepresentation"></td>
         <ng-container *ngIf="isDoctorName">
           <td>{{ item.doctorsName + " " + item.doctorsSurname }}</td>
+        </ng-container>
+        <ng-container *ngIf="isDoctorName">
+          <td (click)="onDeleteClick($event, item)">delete</td>
         </ng-container>
       </tr>
     </tbody>
@@ -21,4 +32,10 @@
   <ng-template #noData>
     <p>No data found</p>
   </ng-template>
+
+  <app-confirmation-modal
+    *ngIf="confirmDeletePatient"
+    (cancel)="cancelDelete()"
+    (confirm)="confirmDelete()"
+  ></app-confirmation-modal>
 </div>

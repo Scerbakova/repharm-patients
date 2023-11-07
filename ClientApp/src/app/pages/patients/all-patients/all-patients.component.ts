@@ -23,6 +23,7 @@ export class AllPatientsComponent implements OnInit {
     'immunizations',
     'insurance',
     'doctor',
+    'actions'
   ];
 
   patientProperties: string[] = [

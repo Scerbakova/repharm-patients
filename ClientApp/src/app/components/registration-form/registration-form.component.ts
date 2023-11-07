@@ -6,7 +6,7 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Patient } from 'src/app/models/patient.model';
 import { PatientsService } from 'src/app/services/patients.service';
 
@@ -25,14 +25,31 @@ export class RegistrationFormComponent implements OnInit {
   registerOrEdit: 'Register' | 'Edit' = 'Register';
   formTitle: string = '';
 
+  personalIdValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const personalId = control.value;
+      if (!personalId) {
+        return null; // Value is empty; let other validators handle this
+      }
+  
+      // Your custom validation logic for personalId using a regular expression
+      const regex = /^\d{6}-\d{5}$/;
+      if (!regex.test(personalId)) {
+        return { 'invalidPersonalId': true };
+      }
+  
+      return null; // Personal ID is valid
+    };
+  }
+
   buidForm(): void {
     this.registerPatientForm = this.fb.group({
       'first name': ['', Validators.required],
       'last name': ['', Validators.required],
-      'personal id': ['', Validators.required],
-      'date of birth': ['', Validators.required],
+      'personal id': ['', [Validators.required, this.personalIdValidator()]],
+      'date of birth': ['', [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)]],
       'phone number': ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       'medical conditions': [''],
       'surgical history': [''],
       medications: [''],

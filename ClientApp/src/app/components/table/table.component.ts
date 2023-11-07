@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Patient } from 'src/app/models/patient.model';
+import { PatientsService } from 'src/app/services/patients.service';
 
 @Component({
   selector: 'app-table',
@@ -17,6 +18,10 @@ export class TableComponent {
 
   @Output() passPatient = new EventEmitter<Patient>();
 
+  confirmDeletePatient?: Patient;
+
+  constructor(private patientsService: PatientsService) {}
+
   getProperty(item: any, prop: string): any {
     return item[prop as keyof Patient];
   }
@@ -24,5 +29,32 @@ export class TableComponent {
   openModal(item: Patient) {
     this.isModalOpen = true;
     this.passPatient.emit(item);
+  }
+
+  deletePatient(item: Patient) {
+    this.patientsService.deletePatient(item.id).subscribe({
+      next: () => {
+        this.data = this.data?.filter((patient) => patient.id !== item.id);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  confirmDelete() {
+    if (this.confirmDeletePatient) {
+      this.deletePatient(this.confirmDeletePatient);
+      this.confirmDeletePatient = undefined;
+    }
+  }
+
+  cancelDelete() {
+    this.confirmDeletePatient = undefined;
+  }
+
+  onDeleteClick(event: Event, item: Patient) {
+    event.stopPropagation();
+    this.confirmDeletePatient = item;
   }
 }
