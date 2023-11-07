@@ -56,7 +56,7 @@ export class RegistrationFormComponent implements OnInit {
         '',
         [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)],
       ],
-      'phone number': ['', Validators.required],
+      'phone number': ['', Validators.required, Validators.pattern(/^\d+$/), Validators.minLength(8), Validators.maxLength(8)],
       email: ['', [Validators.required, Validators.email]],
       'medical conditions': [''],
       'surgical history': [''],

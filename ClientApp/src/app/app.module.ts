@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { AllPatientsComponent } from './pages/patients/all-patients/all-patients.component';
 import { MyPatientsComponent } from './pages/patients/my-patients/my-patients.component';
 import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
@@ -14,6 +13,7 @@ import { TableComponent } from './components/table/table.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
+import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 
 @NgModule({
   declarations: [
