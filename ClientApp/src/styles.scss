@@ -20,6 +20,10 @@
   box-sizing: border-box;
 }
 
+body, html {
+  height: 100%;
+}
+
 /* Fix mobile Safari increase font-size on landscape mode */
 html {
   -moz-text-size-adjust: none;
@@ -31,6 +35,7 @@ html {
 a, button {
   cursor: revert;
 }
+
 
 /* Remove list styles (bullets/numbers) */
 ol, ul, menu, summary {
@@ -135,4 +140,65 @@ body {
   border-radius: 10px;
   max-height: 100vh;
   overflow-y: scroll;
+}
+
+.parallax {
+  background-image: url("../src/assets/bg.jpeg");
+  height: 100%; 
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.app__wrapper {
+  background-color: #ebc500;
+  margin-top: -20%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.cool-button {
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #3498db;
+  position: relative;
+  overflow: hidden;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.cool-button, .button--red {
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #3498db;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.cool-button:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.cool-button:active {
+  transform: rotate(10deg);
+}
+.button--red {
+  background-color: #e74c3c;
 }
