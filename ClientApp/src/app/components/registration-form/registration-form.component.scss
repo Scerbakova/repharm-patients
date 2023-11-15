@@ -1,15 +1,46 @@
-.form-group {
-  flex: 1;
-  margin-right: 10px; /* Adjust the spacing as needed */
-  min-width: 240px;
-}
-
-.fields{
+.fields {
   display: flex;
   flex-wrap: wrap;
+}
+
+.form-group {
+  flex: 0 0 calc(33.33% - 10px);
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+@media (max-width: 900px) {
+  .form-group {
+    flex: 0 0 calc(50% - 10px);
+  }
+}
+
+@media (max-width: 600px) {
+  .form-group {
+    flex: 0 0 calc(50% - 10px);
+  }
+  .fields .form-group:nth-last-child(-n+2) {
+    display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .form-group {
+    flex: 0 0 100%;
+  }
 }
 
 .checkbox {
   height: 30px;
   width: 30px;
+}
+
+.read-only {
+  background-color: #f8f8f8;
+  pointer-events: none;
+  color: #888;
+}
+
+.fields label {
+  padding-right: 10px;
 }

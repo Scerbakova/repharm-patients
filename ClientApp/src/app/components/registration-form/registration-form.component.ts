@@ -28,8 +28,21 @@ export class RegistrationFormComponent implements OnInit {
   @Output() patientEdited = new EventEmitter<boolean>();
 
   registerPatientForm: FormGroup = this.fb.group({});
-  registerOrEdit: 'Register' | 'Edit' = 'Register';
+  registerOrEdit: 'Register' | 'Edit' | 'Save' = 'Register';
+  isEditing: boolean = false;
   formTitle: string = '';
+
+  toggleEditMode() {
+    this.isEditing = !this.isEditing;
+    this.registerOrEdit = this.isEditing ? 'Save' : 'Edit';
+  
+    // Enable or disable form controls based on the edit mode
+    if (this.isEditing) {
+      this.registerPatientForm.enable();
+    } else {
+      this.registerPatientForm.disable();
+    }
+  }
 
   personalIdValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
@@ -56,7 +69,15 @@ export class RegistrationFormComponent implements OnInit {
         '',
         [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)],
       ],
-      'phone number': ['', [Validators.required, Validators.pattern(/^\d+$/), Validators.minLength(8), Validators.maxLength(8)]],
+      'phone number': [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^\d+$/),
+          Validators.minLength(8),
+          Validators.maxLength(8),
+        ],
+      ],
       email: ['', [Validators.required, Validators.email]],
       'medical conditions': [''],
       'surgical history': [''],
@@ -93,7 +114,7 @@ export class RegistrationFormComponent implements OnInit {
     if (changes.isModalOpen && this.isModalOpen) {
       if (this.patient) {
         this.populateForm();
-        this.registerOrEdit = 'Edit';
+        this.registerOrEdit = this.isEditing ? 'Save' : 'Edit';
         this.formTitle = "Change Patient's data";
       } else {
         this.registerOrEdit = 'Register';
@@ -123,6 +144,7 @@ export class RegistrationFormComponent implements OnInit {
   ];
 
   close() {
+    this.isEditing = false;
     this.resetForm();
     this.isModalOpenChange.emit(false);
   }
@@ -141,6 +163,7 @@ export class RegistrationFormComponent implements OnInit {
   ) {}
 
   registerPatient() {
+    if (this.registerOrEdit === 'Edit') return this.toggleEditMode();
     const patient: Partial<Patient> = {
       firstName: this.registerPatientForm.get('first name')?.value,
       lastName: this.registerPatientForm.get('last name')?.value,
@@ -170,7 +193,7 @@ export class RegistrationFormComponent implements OnInit {
             console.error('Error registering patient:', error);
           },
         });
-      } else if (this.registerOrEdit === 'Edit') {
+      } else if (this.registerOrEdit === 'Save') {
         patient.id = this.patient?.id;
         this.patientsService.editPatient(patient.id, patient).subscribe({
           next: () => {
