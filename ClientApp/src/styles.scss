@@ -152,7 +152,7 @@ body {
 }
 
 .app__wrapper {
-  background-color: #ebc500;
+  background-color: #edcf00;
   margin-top: -20%;
   padding-top: 2%;
   padding-bottom: 2%;
@@ -172,7 +172,6 @@ body {
   background-color: #3498db;
   position: relative;
   overflow: hidden;
-  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .cool-button, .button--red {
@@ -186,7 +185,7 @@ body {
   border: none;
   border-radius: 5px;
   color: #fff;
-  background-color: #3498db;
+  background-color: #282c26;
   position: relative;
   overflow: hidden;
   transition: box-shadow 0.3s ease-out, transform 0.3s ease-out;
@@ -197,8 +196,16 @@ body {
 }
 
 .cool-button:active {
-  transform: rotate(10deg);
+  transform: translate(-5px, -1px);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
 .button--red {
   background-color: #e74c3c;
+}
+
+h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
 }

@@ -12,8 +12,8 @@ using repharm_patients.Data;
 namespace repharm_patients.Migrations
 {
     [DbContext(typeof(PatientsDBContext))]
-    [Migration("20231102193500_initial")]
-    partial class initial
+    [Migration("20231115185610_UpdatePatientsControllerOnceAgain")]
+    partial class UpdatePatientsControllerOnceAgain
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

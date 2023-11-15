@@ -1,4 +1,14 @@
 <div class="all-patients__container">
+  <div class="search-container">
+    <label class="search-label" for="search">Search by Name:</label>
+    <input
+      type="text"
+      id="search"
+      [(ngModel)]="searchName"
+      (input)="fetchPatients()"
+      class="search-input"
+    />
+  </div>
   <app-table
     [title]="'Patients'"
     [tableDescription]="'All patients'"
@@ -11,7 +21,7 @@
   <button
     (click)="openModal()"
     type="button"
-    class="btn btn-primary m-3 align-self-end"
+    class="cool-button m-3 align-self-end"
   >
     Add new Patient
   </button>

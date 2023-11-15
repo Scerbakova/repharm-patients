@@ -6,11 +6,16 @@
     class="table"
     *ngIf="data?.length; else noData"
   >
-    <thead class="patients__table">
-      <tr>
-        <th *ngFor="let headName of head">{{ headName }}</th>
-      </tr>
-    </thead>
+<thead class="patients__table">
+  <tr>
+    <th *ngFor="let headName of head" (click)="sort(headName.label)">
+      {{ headName.label }}
+      <span *ngIf="headName.sortable">
+        {{ sortDirection === 'asc' ? '↑' : '↓' }}
+      </span>
+    </th>
+  </tr>
+</thead>
     <tbody>
       <tr
         (click)="openModal(item)"

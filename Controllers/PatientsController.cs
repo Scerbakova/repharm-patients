@@ -16,7 +16,24 @@ namespace repharm_patients.Controllers
             this.patientsDBContext = patientsDBContext;
         }
 
-        [HttpGet]
+        [HttpGet("filtered")]
+        public async Task<IActionResult> getFilteredPatients([FromQuery] string name)
+        {
+            IQueryable<Patient> query = patientsDBContext.Patients;
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                query = query.Where(p =>
+                    EF.Functions.Like(p.FirstName, $"%{name}%") ||
+                    EF.Functions.Like(p.LastName, $"%{name}%")
+                );
+            }
+
+            var patients = await query.ToListAsync();
+            return Ok(patients);
+        }
+
+        [HttpGet("all")]
         public async Task<IActionResult> GetAllPatients()
         {
             var patients = await patientsDBContext.Patients.ToListAsync();

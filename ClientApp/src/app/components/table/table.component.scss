@@ -8,19 +8,20 @@
 }
 
 .table__row td, .patients__table th {
-  border: 1px solid #dee2e6;
+  border: 2px solid rgba(7, 14, 109, 0.062);
 	cursor: pointer;
   text-align: center;
 }
 
 .table__row {
   &:hover {
-    background-color: rgb(204, 191, 245);
+    background-color: rgba(37, 50, 231, 0.37);
+    color: white;
   }
 }
 
 .delete__button {
   &:hover {
-    background-color: rgb(172, 154, 233);
+    background-color: rgb(153, 32, 38);
   }
 }

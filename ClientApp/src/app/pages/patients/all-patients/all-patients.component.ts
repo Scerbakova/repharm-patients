@@ -9,21 +9,21 @@ import { PatientsService } from 'src/app/services/patients.service';
 })
 export class AllPatientsComponent implements OnInit {
   patients: Patient[] = [];
-  patient?: Patient
-  head: string[] = [
-    'patient',
-    'personal id',
-    'date of birth',
-    'phone number',
-    'email',
-    'medical conditions',
-    'surgical history',
-    'medications',
-    'allergies',
-    'immunizations',
-    'insurance',
-    'doctor',
-    'actions'
+  patient?: Patient;
+  head: { label: string; sortable: boolean }[] = [
+    { label: 'patient', sortable: true },
+    { label: 'personal id', sortable: false },
+    { label: 'date of birth', sortable: true },
+    { label: 'phone number', sortable: false },
+    { label: 'email', sortable: true },
+    { label: 'medical conditions', sortable: false },
+    { label: 'surgical history', sortable: false },
+    { label: 'medications', sortable: false },
+    { label: 'allergies', sortable: false },
+    { label: 'immunizations', sortable: false },
+    { label: 'insurance', sortable: true },
+    { label: 'doctor', sortable: true },
+    { label: 'actions', sortable: false },
   ];
 
   patientProperties: string[] = [
@@ -39,18 +39,30 @@ export class AllPatientsComponent implements OnInit {
   ];
 
   isModalOpen: boolean = false;
+  searchName: string = '';
 
   constructor(private patientsService: PatientsService) {}
 
   fetchPatients(): void {
-    this.patientsService.getAllPatients().subscribe({
-      next: (patients) => {
-        this.patients = patients;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+    if (this.searchName.trim() === '') {
+      this.patientsService.getAllPatients().subscribe({
+        next: (patients) => {
+          this.patients = patients;
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+    } else {
+      this.patientsService.getFilteredPatients(this.searchName).subscribe({
+        next: (patients) => {
+          this.patients = patients;
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+    }
   }
 
   ngOnInit(): void {

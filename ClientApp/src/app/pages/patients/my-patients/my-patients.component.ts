@@ -9,18 +9,18 @@ import { PatientsService } from 'src/app/services/patients.service';
 export class MyPatientsComponent implements OnInit {
   patients: Patient[] = [];
   doctor: string = '';
-  head: string[] = [
-    'patient',
-    'personal id',
-    'date of birth',
-    'phone number',
-    'email',
-    'medical conditions',
-    'surgical history',
-    'medications',
-    'allergies',
-    'immunizations',
-    'insurance',
+  head: { label: string; sortable: boolean }[] = [
+    { label: 'patient', sortable: true },
+    { label: 'personal id', sortable: false },
+    { label: 'date of birth', sortable: true },
+    { label: 'phone number', sortable: false },
+    { label: 'email', sortable: true },
+    { label: 'medical conditions', sortable: false },
+    { label: 'surgical history', sortable: false},
+    { label: 'medications', sortable: false },
+    { label: 'allergies', sortable: false },
+    { label: 'immunizations', sortable: false },
+    { label: 'insurance', sortable: true },
   ];
 
   patientProperties: string[] = [
